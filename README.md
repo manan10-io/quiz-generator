@@ -1,4 +1,33 @@
-# QuizGen AI
+# 🚀 QuizGen AI
+
+AI-powered platform to convert PDFs, images and text into editable MCQ banks and automatically generate Google Forms quizzes.
+
+## Features
+
+- 📄 PDF parsing
+- 🖼 OCR support
+- ✏️ Question editor
+- 🤖 AI cleanup
+- 📝 Google Forms generation
+- 📤 Export support
+- 🔐 Google OAuth
+
+## Tech Stack
+
+### Frontend
+- Next.js 14
+- React
+- TailwindCSS
+
+### Backend
+- FastAPI
+- SQLite/PostgreSQL
+- Tesseract OCR
+- Google Forms API
+
+## Demo Flow
+
+PDF → Parse → Review → Generate Google Form 🚀
 
 **Convert any question bank into a professional Google Forms quiz in seconds.**
 
