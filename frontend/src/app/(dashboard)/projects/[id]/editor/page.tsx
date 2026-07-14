@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
@@ -29,7 +29,9 @@ import type { Question } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface EditorPageProps {
-  params: Promise<{ id: string }>;
+  params: {
+     id: string;
+  };
 }
 
 export default function EditorPage({ params }: EditorPageProps) {
