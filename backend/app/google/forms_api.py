@@ -121,23 +121,21 @@ class GoogleFormsAPI:
             presentation["shuffleQuestions"] = True
 
         update_mask_parts = ["quizSettings.isQuiz"]
-        if presentation:
-            update_mask_parts.append("settings.responseReceipt")
 
         batch = {
             "requests": [
                 {
                     "updateSettings": {
                         "settings": {
-                            "quizSettings": quiz_settings,
-                            **({"presentationSettings": presentation} if presentation else {}),
+                            "quizSettings": {
+                                "isQuiz": True
+                            }
                         },
-                        "updateMask": ",".join(update_mask_parts),
+                        "updateMask": "quizSettings.isQuiz",
                     }
                 }
             ]
         }
-
         response = await client.post(
             f"{FORMS_API}/{form_id}:batchUpdate", json=batch, headers=headers
         )
@@ -203,9 +201,6 @@ class GoogleFormsAPI:
                             if q.explanation
                             else {}
                         ),
-                        "generalFeedback": {
-                            "text": f"Correct answer: {q.correct_answer}"
-                        },
                     }
 
             requests.append({

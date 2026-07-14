@@ -33,7 +33,7 @@ interface EditorPageProps {
 }
 
 export default function EditorPage({ params }: EditorPageProps) {
-  const { id: projectId } = use(params);
+  const { id: projectId } = params;
   const { projects } = useProjects();
   const project = projects.find((p) => p.id === projectId);
 
