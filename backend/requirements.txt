@@ -1,0 +1,66 @@
+# ─── Web framework ───────────────────────────────────────────────────────────
+fastapi==0.109.2
+uvicorn[standard]==0.27.1
+python-multipart==0.0.9
+
+# ─── Database ────────────────────────────────────────────────────────────────
+sqlalchemy==2.0.27
+alembic==1.13.1
+asyncpg==0.29.0          # PostgreSQL async driver
+aiosqlite==0.20.0        # SQLite async driver (dev)
+greenlet==3.0.3
+
+# ─── Auth & Security ─────────────────────────────────────────────────────────
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+cryptography==42.0.2
+
+# ─── Validation ──────────────────────────────────────────────────────────────
+pydantic==2.6.1
+pydantic-settings==2.1.0
+email-validator==2.1.0
+
+# ─── HTTP Client ─────────────────────────────────────────────────────────────
+httpx==0.26.0
+
+# ─── File parsing ────────────────────────────────────────────────────────────
+pdfplumber==0.10.3        # Text-layer PDF extraction
+pymupdf==1.23.26          # Fitz — fast PDF processing
+python-docx==1.1.0        # DOCX reading
+openpyxl==3.1.2           # Excel reading/writing
+chardet==5.2.0            # Encoding detection
+
+# ─── OCR ─────────────────────────────────────────────────────────────────────
+numpy<2                    # OpenCV 4.9 wheels are built against the NumPy 1.x C API
+pytesseract==0.3.10       # Tesseract OCR wrapper
+Pillow==10.2.0            # Image processing
+opencv-python-headless==4.9.0.80  # Image preprocessing (no GUI)
+
+# ─── AI / NLP ────────────────────────────────────────────────────────────────
+anthropic==0.18.1         # Claude API for cleanup
+langdetect==1.0.9         # Language detection
+
+# ─── Google APIs ─────────────────────────────────────────────────────────────
+google-auth==2.27.0
+google-auth-oauthlib==1.2.0
+google-api-python-client==2.118.0
+
+# ─── Export ──────────────────────────────────────────────────────────────────
+weasyprint==61.2          # HTML → PDF export
+pydyf==0.10.0             # weasyprint 61.2 needs the <0.11 PDF API (0.12 broke PDF.__init__)
+reportlab==4.1.0          # PDF generation (fallback)
+lxml==5.1.0               # XML processing (Moodle export)
+
+# ─── Utilities ───────────────────────────────────────────────────────────────
+python-slugify==8.0.4
+python-dotenv==1.0.1
+aiofiles==23.2.1          # Async file I/O
+celery==5.3.6             # Background tasks
+redis==5.0.1              # Celery broker / cache
+flower==2.0.1             # Celery monitoring
+
+# ─── Dev ─────────────────────────────────────────────────────────────────────
+pytest==8.0.0
+pytest-asyncio==0.23.5
+pytest-cov==4.1.0
+httpx==0.26.0             # Test client

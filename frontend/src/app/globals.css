@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ─── Surfaces ─── */
+    --background: 0 0% 99%;
+    --foreground: 240 10% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 5%;
+
+    /* ─── Brand ─── */
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    /* ─── Secondary ─── */
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+
+    /* ─── UI ─── */
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 263 40% 96%;
+    --accent-foreground: 263 60% 35%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 263 70% 50%;
+
+    /* ─── Status ─── */
+    --success: 152 60% 35%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 90% 42%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* ─── Shape ─── */
+    --radius: 0.625rem;
+
+    /* ─── Fonts ─── */
+    --font-inter: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+    /* ─── Sidebar ─── */
+    --sidebar-width: 240px;
+    --sidebar-collapsed-width: 60px;
+    --header-height: 56px;
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 8% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 8% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 263 70% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4% 14%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4% 14%;
+    --muted-foreground: 240 5% 60%;
+    --accent: 263 30% 14%;
+    --accent-foreground: 263 60% 75%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 263 70% 60%;
+    --success: 152 50% 45%;
+    --warning: 38 80% 50%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: var(--font-inter);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    background-color: hsl(263 70% 50% / 0.15);
+    color: hsl(var(--foreground));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: calc(var(--radius) - 2px);
+  }
+
+  /* ─── Scrollbar styling ─── */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground) / 0.4);
+  }
+}
+
+@layer utilities {
+  /* ─── Gradient text ─── */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      hsl(263 70% 50%) 0%,
+      hsl(220 70% 60%) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── Glass morphism surface ─── */
+  .glass {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* ─── Shimmer loading effect ─── */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--border)) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* ─── Dot grid background ─── */
+  .dot-grid {
+    background-image: radial-gradient(
+      circle,
+      hsl(var(--border)) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  /* ─── Subtle gradient background ─── */
+  .hero-gradient {
+    background: radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        hsl(263 70% 50% / 0.08) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 50% 30% at 80% 80%,
+        hsl(220 70% 60% / 0.05) 0%,
+        transparent 70%
+      );
+  }
+
+  /* ─── Card hover effect ─── */
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-card-hover hover:-translate-y-px;
+  }
+
+  /* ─── Status pill ─── */
+  .status-ready {
+    @apply bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400;
+  }
+  .status-draft {
+    @apply bg-violet-50 text-violet-700 dark:bg-violet-950 dark:text-violet-400;
+  }
+  .status-error {
+    @apply bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-400;
+  }
+  .status-warning {
+    @apply bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-400;
+  }
+
+  /* ─── Difficulty badges ─── */
+  .diff-easy {
+    @apply bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400;
+  }
+  .diff-medium {
+    @apply bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-400;
+  }
+  .diff-hard {
+    @apply bg-rose-50 text-rose-600 dark:bg-rose-950 dark:text-rose-400;
+  }
+
+  /* ─── No scrollbar ─── */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

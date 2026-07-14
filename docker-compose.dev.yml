@@ -1,0 +1,39 @@
+version: "3.9"
+
+# ─── Dev overrides ──────────────────────────────────────────────────────────────
+# Adds hot-reload for both frontend and backend by mounting source directories
+# and overriding the container's default start command.
+#
+# Usage: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  backend:
+    build:
+      target: base
+    environment:
+      ENVIRONMENT: development
+      DEBUG: "true"
+    volumes:
+      - ./backend:/app
+      - export_files:/tmp/quizgen_exports
+      - upload_files:/tmp/quizgen_uploads
+    # Skip the Dockerfile's baked-in CMD (which runs migrations + multi-worker
+    # uvicorn) in favor of a single reloading worker for fast iteration.
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+  frontend:
+    build:
+      target: builder
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+
+volumes:
+  export_files:
+  upload_files:
