@@ -20,9 +20,9 @@ import { cn, getDifficultyColor, formatMarks } from "@/lib/utils";
 import type { Question } from "@/types";
 
 interface PreviewPageProps {
-  params: {
+  params: Promise<{
      id: string;
-	};
+  };
 }
 
 function PreviewCard({ question, index }: { question: Question; index: number }) {
@@ -131,7 +131,8 @@ function PreviewCard({ question, index }: { question: Question; index: number })
 }
 
 export default function PreviewPage({ params }: PreviewPageProps) {
-  const { id: projectId } = use(params);
+  const resolvedParams = use(params) as { id: string };
+  const projectId = resolvedParams.id;
   const { projects } = useProjects();
   const project = projects.find((p) => p.id === projectId);
   const { questions, isLoading, stats, filters, setFilters } = useQuestions(projectId);
