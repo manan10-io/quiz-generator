@@ -22,7 +22,8 @@ import type { Question } from "@/types";
 interface PreviewPageProps {
   params: {
      id: string;
-};
+	};
+}
 
 function PreviewCard({ question, index }: { question: Question; index: number }) {
   const options = [
